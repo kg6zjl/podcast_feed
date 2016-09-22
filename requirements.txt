@@ -1,0 +1,5 @@
+Flask==0.11.1
+Werkzeug==0.11.11
+gunicorn==19.6.0
+uWSGI==2.0.13.1
+feedgen==0.4.0
