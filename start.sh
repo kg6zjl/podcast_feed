@@ -7,20 +7,20 @@ sudo yum -y install nginx
 #sudo pip install flask
 #sudo pip install gunicorn
 
-#edit nginx config: /etc/nginx/conf.d
-#echo server {
+#edit nginx config: /etc/nginx/conf.d/virtual.conf
+#add:
+#server {
 #    listen       80;
-#    server_name  ec2-52-26-62-78.us-west-2.compute.amazonaws.com;
+#    server_name  ec2-54-149-239-188.us-west-2.compute.amazonaws.com;
 #
 #    location / {
 #        proxy_pass http://127.0.0.1:5000;
 #    }
 #}
 
-mkdir -p app
-cd app
-
-git pull https://github.com/steve-smp/quotes_db.git
+git init
+git fetch https://github.com/steve-smp/podcast_feed.git
+git pull https://github.com/steve-smp/podcast_feed.git
 
 sudo pip install -r requirements.txt
 sudo /etc/init.d/nginx start
