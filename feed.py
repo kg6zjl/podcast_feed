@@ -56,6 +56,7 @@ def feedgen():
 			fe.podcast.itunes_subtitle(item['itunes_subtitle'])
 			fe.podcast.itunes_explicit(item['itunes_explicit'])
 			fe.podcast.itunes_image(item['itunes_image'])
+			fe.podcast.itunes_duration('00:30:00')
 			fe.link(href=item['link'], rel='enclosure')
 			fe.title(item['title'])
 			fe.description(item['itunes_subtitle'])
