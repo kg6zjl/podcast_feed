@@ -98,7 +98,7 @@ def parse_items(rssFeed):
 		except: itunes_explicit = None
 		item_dict['itunes_explicit']=itunes_explicit
 		try: itunes_duration = item['itunes:duration']
-		except: itunes_duration = None
+		except: itunes_duration = '00:30:00'
 		item_dict['itunes_duration']=itunes_duration
 		try: itunes_image = item['itunes:image']['@href']
 		except: itunes_image = None	

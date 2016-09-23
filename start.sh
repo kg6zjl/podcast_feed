@@ -29,6 +29,9 @@ git fetch https://github.com/steve-smp/podcast_feed.git
 git pull https://github.com/steve-smp/podcast_feed.git
 
 sudo pip install -r requirements.txt
+
+python parse_feed.py
+
 sudo /etc/init.d/nginx start
 kill $(ps aux | grep '[g]unicorn' | awk '{print $2}')
 sudo /etc/init.d/nginx restart
