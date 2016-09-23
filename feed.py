@@ -35,23 +35,30 @@ def feedgen():
 		# now process to xml:
 		
 		fg = FeedGenerator()
-		fg.title('Open Door Podcast')
-		fg.description('Open Door Podcast')
+		fg.title('Teaching Podcast - Open Door')
+		fg.description('''We are a family of sojourners learning to walk in the way of Jesus for the good of the world (www.opendooreastbay.com)''')
 		fg.load_extension('podcast')
-		
-
+		fg.language('en-US')
 		#fg.atom_link('http://ec2-54-149-239-188.us-west-2.compute.amazonaws.com/', rel='self')
-		fg.podcast.itunes_author('Open Door')
-		fg.podcast.itunes_category('religion')
-		fg.podcast.itunes_image('')
+		fg.podcast.itunes_author('Open Door East Bay')
+		fg.podcast.itunes_category('Religion &amp; Spirituality')
+		fg.podcast.itunes_image('http://static1.squarespace.com/static/54c9a274e4b0d8961be0d970/t/555bb45ee4b051f7c699813d/1436299699944/1500w/od-emblem-blue.jpg')
+		fg.podcast.itunes_subtitle('Open Door Teachings')
+		fg.podcast.itunes_summary('''We are a family of sojourners learning to walk in the way of Jesus for the good of the world (www.opendooreastbay.com)''')
+		fg.podcast.itunes_explicit('no')
+
 		fg.link(href='http://www.opendooreastbay.com', rel='alternate')
 		for item in data:
 			fe = fg.add_entry()
 			fe.id(item['enclosure_url'])
+			fe.podcast.itunes_author(item['itunes_author'])
+			fe.podcast.itunes_subtitle(item['itunes_subtitle'])
+			fe.podcast.itunes_explicit(item['itunes_explicit'])
+			fe.podcast.itunes_image(item['itunes_image'])
 			fe.link(href=item['link'], rel='enclosure')
 			fe.title(item['title'])
 			fe.description(item['itunes_subtitle'])
-			fe.enclosure(item['enclosure_url'], 0, 'audio/mpeg')
+			fe.enclosure(item['enclosure_url'], '30:00:00', 'audio/mpeg')
 		fg.rss_str(pretty=True)
 		fg.rss_file('podcast.xml')
 		print "wrote xml!"

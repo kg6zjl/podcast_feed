@@ -22,7 +22,9 @@ sudo yum -y install libxml2-devel
 #    }
 #}
 
+
 git init
+git reset --hard
 git fetch https://github.com/steve-smp/podcast_feed.git
 git pull https://github.com/steve-smp/podcast_feed.git
 
