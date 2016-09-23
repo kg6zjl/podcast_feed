@@ -39,7 +39,7 @@ def feedgen():
 		fg.description('''We are a family of sojourners learning to walk in the way of Jesus for the good of the world (www.opendooreastbay.com)''')
 		fg.load_extension('podcast')
 		fg.language('en-US')
-		#fg.atom_link('http://ec2-54-149-239-188.us-west-2.compute.amazonaws.com/', rel='self')
+		fg.link(href='http://ec2-54-149-239-188.us-west-2.compute.amazonaws.com/', rel='self', type="application/rss+xml")
 		fg.podcast.itunes_author('Open Door East Bay')
 		fg.podcast.itunes_category('Religion & Spirituality')
 		fg.podcast.itunes_image('http://static1.squarespace.com/static/54c9a274e4b0d8961be0d970/t/555bb45ee4b051f7c699813d/1436299699944/1500w/od-emblem-blue.jpg')
