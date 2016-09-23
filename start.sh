@@ -3,10 +3,14 @@ sudo yum -y install git
 sudo yum -y groupinstall "Development Tools"
 sudo yum -y install python-devel
 sudo yum -y install nginx
+sudo yum -y install libxml2-devel
 #sudo pip install uWSGI
 #sudo pip install flask
 #sudo pip install gunicorn
 
+#edit /etc/nginx/nginx.conf
+	#change server_names_hash_bucket_size 128;
+	
 #edit nginx config: /etc/nginx/conf.d/virtual.conf
 #add:
 #server {

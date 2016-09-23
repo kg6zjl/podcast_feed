@@ -33,10 +33,14 @@ def feedgen():
 		cursor.execute(query)
 		data = cursor.fetchall()
 		# now process to xml:
+		
 		fg = FeedGenerator()
 		fg.title('Open Door Podcast')
 		fg.description('Open Door Podcast')
 		fg.load_extension('podcast')
+		fg.load_extension('atom')
+		
+		fg.atom.atom_link('http://ec2-54-149-239-188.us-west-2.compute.amazonaws.com/', rel='self')
 		fg.podcast.itunes_author('Open Door')
 		fg.podcast.itunes_category('religion')
 		fg.podcast.itunes_image('')
@@ -65,7 +69,7 @@ def serve():
 	print "reading xml"
 	with open('podcast.xml', 'r') as myfile:
 		data=myfile.read()
-	return data, 200, {'Content-Type': 'text/css; charset=utf-8'}
+	return data, 200, {'Content-Type': 'text/xml; charset=utf-8'}
 
 if __name__ == '__main__':
 	app.debug=True
