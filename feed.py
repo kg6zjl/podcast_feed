@@ -46,6 +46,7 @@ def feedgen():
 		fg.podcast.itunes_subtitle('Open Door Teachings')
 		fg.podcast.itunes_summary('''We are a family of sojourners learning to walk in the way of Jesus for the good of the world (www.opendooreastbay.com)''')
 		fg.podcast.itunes_explicit('no')
+		fg.podcast.itunes_owner(name='Open Door East Bay', email='info@opendooreastbay.com')
 
 		fg.link(href='http://www.opendooreastbay.com', rel='alternate')
 		for item in data:
