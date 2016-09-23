@@ -38,9 +38,9 @@ def feedgen():
 		fg.title('Open Door Podcast')
 		fg.description('Open Door Podcast')
 		fg.load_extension('podcast')
-		fg.load_extension('atom')
 		
-		fg.atom.atom_link('http://ec2-54-149-239-188.us-west-2.compute.amazonaws.com/', rel='self')
+
+		#fg.atom_link('http://ec2-54-149-239-188.us-west-2.compute.amazonaws.com/', rel='self')
 		fg.podcast.itunes_author('Open Door')
 		fg.podcast.itunes_category('religion')
 		fg.podcast.itunes_image('')
