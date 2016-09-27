@@ -3,7 +3,7 @@
 
 #parse xml/rss feed and write to sql
 
-import xmltodict, re, requests, os, urllib, sqlite3 as lite
+import xmltodict, re, requests, os, urllib, time, sqlite3 as lite
 from requests import get
 from StringIO import StringIO
 from BeautifulSoup import BeautifulSoup
@@ -14,15 +14,22 @@ url = '''http://www.opendooreastbay.com/podcast?format=rss'''
 #http://feeds.feedburner.com/OpenDoorEastBay
 
 def download_xml(url): #download file
-	filename = 'feed.xml'
-	chunk_size = 2048
-	r = requests.get(url)
-	if r.status_code == '200':
-		with open(filename, 'wb') as file:
-			file.write(r.content)
-		return filename
-	else:
-		return False
+	for x in range(10): # try 10 times, ftp server disconnects often in testing.
+		print "Attempt #%s" % str(int(x)+1)
+		if x > 0:
+			print "Waiting 30 seconds before trying again."
+			time.sleep(30)
+		try:
+			chunk_size = 2048
+			r = requests.get(url)
+			if r.status_code == '200':
+				with open(xml_file, 'wb') as file:
+					file.write(r.content)
+				return str(xml_file)
+				break
+		except:
+			print "Failed to connect to FTP 10 times, exiting."
+			return False
 
 def var(var,x): #set variable, but default to none
 	try:
@@ -150,19 +157,20 @@ def count_items():
 ##########
 schema = 'podcast_schema.sql'
 db = 'podcast.db'
-#xml_file = download_xml(url)
 xml_file = 'feed.xml'
+#xml_file = download_xml(url) # seems broken, switch to wget/curl cronjob
 
 check_db(db,schema)
 
-with open(xml_file) as fd:
-	rssFeed = xmltodict.parse(fd.read())
+if xml_file:
+	with open(xml_file) as fd:
+		rssFeed = xmltodict.parse(fd.read())
 
-parse_channel(rssFeed)
+	parse_channel(rssFeed)
 
-parse_items(rssFeed)
+	parse_items(rssFeed)
 
-count_items()
+	count_items()
 
 rssFeed = None
 exit()

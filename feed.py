@@ -28,7 +28,7 @@ def feedgen():
 	with lite.connect(db) as conn:
 		conn.row_factory = dict_factory
 		#conn.row_factory = lite.Row
-		query = ("select * from podcast_items order by id DESC;")
+		query = ("select * from podcast_items order by date(pubdate) DESC;")
 		cursor = conn.cursor()
 		cursor.execute(query)
 		data = cursor.fetchall()
@@ -57,6 +57,7 @@ def feedgen():
 			fe.podcast.itunes_explicit(item['itunes_explicit'])
 			fe.podcast.itunes_image(item['itunes_image'])
 			fe.podcast.itunes_duration(item['itunes_duration'])
+			fe.published(item['pubDate'])
 			fe.link(href=item['link'], rel='enclosure')
 			fe.title(item['title'])
 			fe.description(item['itunes_subtitle'])
@@ -81,5 +82,5 @@ def serve():
 	return data, 200, {'Content-Type': 'text/xml; charset=utf-8'}
 
 if __name__ == '__main__':
-	app.debug=True
+	#app.debug=True
 	app.run(host='0.0.0.0', port=5000)
