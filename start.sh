@@ -18,7 +18,7 @@ sudo yum -y install libxml2-devel
 #    server_name  ec2-54-149-239-188.us-west-2.compute.amazonaws.com;
 #
 #    location / {
-#        proxy_pass http://127.0.0.1:5000;
+#        proxy_pass http://127.0.0.1:5001;
 #    }
 #}
 
@@ -36,4 +36,4 @@ python parse_feed.py
 sudo /etc/init.d/nginx start
 kill $(ps aux | grep '[g]unicorn' | awk '{print $2}')
 sudo /etc/init.d/nginx restart
-gunicorn --bind 0.0.0.0:5000 --workers 16 wsgi &
+gunicorn --bind 0.0.0.0:5001 --workers 16 wsgi &
