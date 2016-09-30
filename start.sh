@@ -1,9 +1,9 @@
-sudo yum -y update
-sudo yum -y install git
-sudo yum -y groupinstall "Development Tools"
-sudo yum -y install python-devel
-sudo yum -y install nginx
-sudo yum -y install libxml2-devel
+#sudo yum -y update
+#sudo yum -y install git
+#sudo yum -y groupinstall "Development Tools"
+#sudo yum -y install python-devel
+#sudo yum -y install nginx
+#sudo yum -y install libxml2-devel
 #sudo pip install uWSGI
 #sudo pip install flask
 #sudo pip install gunicorn
@@ -23,15 +23,19 @@ sudo yum -y install libxml2-devel
 #}
 
 
-git init
-git reset --hard
-git fetch https://github.com/steve-smp/podcast_feed.git
-git pull https://github.com/steve-smp/podcast_feed.git
+#git init
+#git reset --hard
+#git fetch https://github.com/steve-smp/podcast_feed.git
+#git pull https://github.com/steve-smp/podcast_feed.git
 #git clone https://github.com/steve-smp/podcast_feed.git
 
-sudo pip install -r requirements.txt
+#sudo pip install -r requirements.txt
+
+###PREVIOUS steps moved to Dockerfile/image
 
 python parse_feed.py
+
+sudo fuser -k 80/tcp # kills anything running on port 80
 
 sudo /etc/init.d/nginx start
 kill $(ps aux | grep '[g]unicorn' | awk '{print $2}')
