@@ -1,0 +1,3 @@
+30      *       *       *       *       /usr/bin/python2.7 ~/app/parse_feed.py
+20      *       *       *       *       wget http://www.opendooreastbay.com/podcast?format=rss -O ~/app/feed.xml
+#empty line

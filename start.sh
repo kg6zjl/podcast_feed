@@ -23,10 +23,10 @@
 #}
 
 
-#git init
-#git reset --hard
-#git fetch https://github.com/steve-smp/podcast_feed.git
-#git pull https://github.com/steve-smp/podcast_feed.git
+git init
+git reset --hard
+git fetch https://github.com/steve-smp/podcast_feed.git
+git pull https://github.com/steve-smp/podcast_feed.git
 #git clone https://github.com/steve-smp/podcast_feed.git
 
 #sudo pip install -r requirements.txt

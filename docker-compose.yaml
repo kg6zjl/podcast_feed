@@ -1,0 +1,52 @@
+version: '2'
+services:
+  weba: #spin up web interface (python/flask)
+    build: .
+    expose:
+      - 5000
+    #tty: true
+  
+  webb: #spin up web interface (python/flask)
+    build: .
+    expose:
+      - 5000
+    #tty: true
+
+  webc: #spin up web interface (python/flask)
+    build: .
+    expose:
+      - 5000
+    #tty: true
+  
+  redis: #spin up redis
+    image: redis
+  
+  mysql: # spin up mysql
+    image: mysql
+    environment:
+     - MYSQL_ROOT_PASSWORD=smp_db_test
+     - MYSQL_DATABASE=db_test
+     - COMPOSE_HTTP_TIMEOUT=300
+    ports:
+     - "3306:3306"
+  
+  haproxy: #spin up a load balancer
+    image: haproxy
+    #volumes:
+    # - haproxy:/haproxy-override
+    depends_on:
+     - redis
+     - mysql
+    links:
+     - weba
+     - webb
+     - webc
+     - redis
+     - mysql
+    ports:
+     - "80:80"
+     - "70:70"
+
+    expose:
+     - "80"
+     - "70"
