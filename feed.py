@@ -39,7 +39,7 @@ def feedgen():
 		fg.description('''We are a family of sojourners learning to walk in the way of Jesus for the good of the world (www.opendooreastbay.com)''')
 		fg.load_extension('podcast')
 		fg.language('en-US')
-		fg.link(href='http://ec2-54-149-239-188.us-west-2.compute.amazonaws.com/', rel='self', type="application/rss+xml")
+		fg.link(href='http://podcast.opendooreastbay.com/', rel='self', type="application/rss+xml")
 		fg.podcast.itunes_author('Open Door East Bay')
 		fg.podcast.itunes_category('Religion & Spirituality')
 		fg.podcast.itunes_image('http://static1.squarespace.com/static/54c9a274e4b0d8961be0d970/t/555bb45ee4b051f7c699813d/1436299699944/1500w/od-emblem-blue.jpg')
@@ -48,7 +48,7 @@ def feedgen():
 		fg.podcast.itunes_explicit('no')
 		fg.podcast.itunes_owner(name='Open Door East Bay', email='info@opendooreastbay.com')
 		
-		#fg.podcast.itunes_new_feed_url('http://podcast.opendooreastbay.com') #to move itunes feed to a new url
+		fg.podcast.itunes_new_feed_url('http://podcast.opendooreastbay.com') #to move itunes feed to a new url
 		
 		fg.link(href='http://www.opendooreastbay.com', rel='alternate')
 		for item in data:
